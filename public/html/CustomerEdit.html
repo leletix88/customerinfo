@@ -1,0 +1,102 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	CustomerEdit
+	
+	Links : 	
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="CustomerEditController">
+	
+	<h1 class="col-sm-12 ng-binding">
+		<span>CustomerEdit</span>
+		{{obj.name}}
+	</h1>
+	
+	
+	
+	<div class="well">
+		<form name="easyForm" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="businessUnit">BusinessUnit</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : easyForm.businessUnit.$invalid }">
+					<input  type="text" ng-model="obj.businessUnit"  class="form-control" name="businessUnit" id="businessUnit" >
+		 			
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="name">Name</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : easyForm.name.$invalid }">
+					<input  type="text" ng-model="obj.name"  class="form-control" name="name" id="name" >
+		 			
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="tags">Tags</label>
+				</div>
+				<div class="col-sm-9 form-group" ng-class="{ 'has-error' : easyForm.tags.$invalid }">
+					<input  type="text" ng-model="obj.tags"  class="form-control" name="tags" id="tags" >
+		 			
+				</div>
+			</div>
+			
+			
+			<h2>Relations</h2>
+			
+			
+			<h2>External Relations</h2>
+			
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="_Project_customer">
+						_Project_customer
+					</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<div ng-repeat="item in external._Project_customer track by $index">
+						{{item._id}}
+					</div>
+				</div>
+			</div>
+	
+			<div class="row">
+				<button ng-if="obj._id" class="btn btn-danger" data-toggle="modal" data-target="#removeModal">
+					<i class="glyphicon glyphicon-trash"></i> Remove
+				</button>
+				
+				<button class="btn btn-info pull-right" ng-link="/customers/">Back to List</button>
+				<button type="submit" class="btn btn-primary pull-right" ng-disabled="easyForm.$invalid" ng-click="save()">Save</button>
+			</div>
+			<div class="clearfix"></div>
+		</form>
+		
+	</div>
+	
+	
+	<!-- MODAL REMOVE -->
+	<div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Delete item</h4>
+				</div>
+				<div class="modal-body">
+					Do you want confirm delete? 
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">NO</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="remove()">YES</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

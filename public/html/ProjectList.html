@@ -1,0 +1,61 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	ProjectList
+	
+	Links : 	ProjectEdit
+					/projects/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="ProjectListController">
+	
+	<h1>ProjectList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="description">Description</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.description" class="form-control" name="description" id="description" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="name">Name</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.name" class="form-control" name="name" id="name" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>description</th>
+				<th>name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  description:search.description,  name:search.name,  }">
+				<td ng-bind="item._id" ng-link="/projects/{{item._id}}"></td>
+				<td ng-bind="item.description"></td>
+				<td ng-bind="item.name"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/projects/new">New</button>
+	
+</div>
